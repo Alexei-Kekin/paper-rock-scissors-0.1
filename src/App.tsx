@@ -1,26 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          PAPER ROCK SCISSORS
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import styles from './styles/App.module.scss'
+interface IAppProps {
 }
+
+const App: React.FC<IAppProps> = () => {
+  return (
+      <div className={styles.app}>
+          GAME HERE
+      </div>
+  );
+};
 
 export default App;
