@@ -1,6 +1,7 @@
 {
   "name": "paper-rock-scissors-0.1",
   "version": "0.1.0",
+  "authors": "Alex K, Anton B",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
