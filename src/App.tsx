@@ -8,6 +8,7 @@ import {
 import { phaseTimerInstructions } from "./modules/game/state/selectors";
 import { resultsHandler } from "./modules/game/tools/tools";
 //Screens
+import { StartScreen } from "./modules/game/screens/StartScreen/StartScreen";
 import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen";
 //Reused components
 import { Button } from "./components/Button/Button";
@@ -45,13 +46,13 @@ const App: React.FC = () => {
   }, [gamePhase]);
 
   return (
-    <div className={styles.app}>
+      <div className={styles.app}>
+        <StartScreen />
 
-
-      <SessionResultScreen
-        scores={scores}
-      />
-    </div>
+        <SessionResultScreen
+          scores={scores}
+        />
+      </div>
   );
 };
 
