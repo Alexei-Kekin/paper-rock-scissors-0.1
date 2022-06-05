@@ -7,8 +7,11 @@ import {
 } from "./modules/game/state/reducer";
 import { phaseTimerInstructions } from "./modules/game/state/selectors";
 import { resultsHandler } from "./modules/game/tools/tools";
-import {Button} from "./components/Button/Button";
-import {Spinner} from "./components/loaders/Spinner/Spinner";
+//Screens
+import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen";
+//Reused components
+import { Button } from "./components/Button/Button";
+import { Spinner } from "./components/loaders/Spinner/Spinner";
 import { IFigures, IGamePhases, IStore } from "./modules/game/types";
 import styles from './styles/App.module.scss';
 
@@ -42,12 +45,13 @@ const App: React.FC = () => {
   }, [gamePhase]);
 
   return (
-      <div className={styles.app}>
-          GAME HERE
+    <div className={styles.app}>
 
-          <Button>Button</Button>
-          <Spinner />
-      </div>
+
+      <SessionResultScreen
+        scores={scores}
+      />
+    </div>
   );
 };
 
