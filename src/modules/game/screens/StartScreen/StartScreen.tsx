@@ -17,7 +17,7 @@ export const StartScreen: React.FC<IStartScreenProps> = () => {
             />
             <div className={styles.container}>
                 <h1 className={styles.title}>Start battles</h1>
-                <Button className={styles.btn}>Button</Button>
+                <Button className={styles.btn}>Start</Button>
             </div>
         </div>
     );
