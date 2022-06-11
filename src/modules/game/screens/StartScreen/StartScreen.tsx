@@ -15,6 +15,9 @@ export const StartScreen: React.FC<IStartScreenProps> = () => {
                 muted
                 loop
             />
+            <div className={styles.containerSubTitle}>
+                <span>Choose your side and</span>
+            </div>
             <div className={styles.container}>
                 <h1 className={styles.title}>Start battles</h1>
                 <Button className={styles.btn}>Start</Button>
