@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import {
-  changeGamePhase,
-  incrementRoundsCounter,
-  setRoundResult,
-} from "./modules/game/state/reducer";
-import { phaseTimerInstructions } from "./modules/game/state/selectors";
-import { resultsHandler } from "./modules/game/tools/tools";
-import { IFigures, IGamePhases, IStore } from "./modules/game/types";
-import { StartScreen } from "./modules/game/screens/StartScreen/StartScreen";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {changeGamePhase, incrementRoundsCounter, setRoundResult,} from "./modules/game/state/reducer";
+import {phaseTimerInstructions} from "./modules/game/state/selectors";
+import {resultsHandler} from "./modules/game/tools/tools";
+import {IFigures, IGamePhases, IStore} from "./modules/game/types";
+import {RoundScreen} from "./modules/game/screens/RoundScreen/RoundScreen";
 import styles from './styles/App.module.scss';
 
 const App: React.FC = () => {
@@ -42,7 +38,8 @@ const App: React.FC = () => {
 
   return (
       <div className={styles.app}>
-          <StartScreen />
+        {/*<StartScreen />*/}
+        <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />
       </div>
   );
 };
