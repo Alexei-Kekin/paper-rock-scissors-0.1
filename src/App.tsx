@@ -42,6 +42,12 @@ const App: React.FC = () => {
         {/*<SessionResultScreen*/}
         {/*    scores={scores}*/}
         {/*/>*/}
+        {/*<BetweenRoundsScreen*/}
+        {/*    figures={{*/}
+        {/*      firstFigure: IFigures.scissors,*/}
+        {/*      secondFigure: IFigures.rock*/}
+        {/*    }}*/}
+        {/*/>*/}
         <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />
       </div>
   );
