@@ -6,6 +6,9 @@ import {resultsHandler} from "./modules/game/tools/tools";
 import {IFigures, IGamePhases, IStore} from "./modules/game/types";
 import {RoundScreen} from "./modules/game/screens/RoundScreen/RoundScreen";
 import styles from './styles/App.module.scss';
+import {SessionResultScreen} from "./modules/game/screens/SessionResultScreen/SessionResultScreen";
+import {StartScreen} from "./modules/game/screens/StartScreen/StartScreen";
+import {BetweenRoundsScreen} from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const App: React.FC = () => {
 
   return (
       <div className={styles.app}>
-        {/*<StartScreen />*/}
+        <StartScreen />
         {/*<SessionResultScreen*/}
         {/*    scores={scores}*/}
         {/*/>*/}
