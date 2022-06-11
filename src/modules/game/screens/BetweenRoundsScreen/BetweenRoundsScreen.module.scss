@@ -1,0 +1,22 @@
+.betweenRoundsScreen {
+
+}
+
+.figuresInteraction {
+  width: 50%;
+  display: flex;
+}
+
+.figureIcon {
+  width: 10vw;
+  height: 10vw;
+  background-image: url('../../../../../public/assets/images/png/scissors-icon.jpg');
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+

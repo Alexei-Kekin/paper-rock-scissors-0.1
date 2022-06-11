@@ -1,6 +1,5 @@
 import React from 'react';
-import { IPlayers, IResultEvents, IScores } from "../types";
-import classNames from "classnames";
+import { IPlayers, IResultEvents, IScores } from "../../types";
 import styles from './SessionResultScreen.module.scss'
 
 interface ISessionResultScreen {
@@ -18,14 +17,18 @@ export const SessionResultScreen: React.FC<ISessionResultScreen> = ({ scores: { 
 
   return (
     <div className={styles.sessionResultScreen}>
-      <div className={classNames(styles.descriptionTitle, styles.forAnimationTextWrapper)}>
+      <div className={styles.descriptionTitle}>
         <div className={styles.textHolder}>Result of today's battle...</div>
       </div>
-      <div className={classNames(styles.descriptionTitle, styles.values)}>
+      <div className={styles.values}>
         <div className={styles.textHolder}>
           { outputResult }
+          <span>{` score: (${firstPlayerScore}/${secondPlayerScore})`}</span>
         </div>
       </div>
+      <div className={styles.icon} />
     </div>
   )
 };
+
+

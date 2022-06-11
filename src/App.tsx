@@ -9,11 +9,14 @@ import { phaseTimerInstructions } from "./modules/game/state/selectors";
 import { resultsHandler } from "./modules/game/tools/tools";
 //Screens
 import { StartScreen } from "./modules/game/screens/StartScreen/StartScreen";
-import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen";
+
+import { BetweenRoundsScreen } from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
+import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen/SessionResultScreen";
 //Reused components
 import { Button } from "./components/Button/Button";
 import { Spinner } from "./components/loaders/Spinner/Spinner";
 import { IFigures, IGamePhases, IStore } from "./modules/game/types";
+//styles
 import styles from './styles/App.module.scss';
 
 const App: React.FC = () => {
@@ -47,11 +50,17 @@ const App: React.FC = () => {
 
   return (
       <div className={styles.app}>
-        <StartScreen />
-
-        <SessionResultScreen
-          scores={scores}
+        <BetweenRoundsScreen
+          figures={{
+            firstFigure: IFigures.scissors,
+            secondFigure: IFigures.rock
+          }}
         />
+        {/*<StartScreen />*/}
+
+        {/*<SessionResultScreen*/}
+        {/*  scores={scores}*/}
+        {/*/>*/}
       </div>
   );
 };
