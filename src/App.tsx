@@ -3,8 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeGamePhase, incrementRoundsCounter, setRoundResult,} from "./modules/game/state/reducer";
 import {phaseTimerInstructions} from "./modules/game/state/selectors";
 import {resultsHandler} from "./modules/game/tools/tools";
-import {IFigures, IGamePhases, IStore} from "./modules/game/types";
+import {IFigures, IGamePhases, IPlayers, IResultEvents, IStore} from "./modules/game/types";
 import {RoundScreen} from "./modules/game/screens/RoundScreen/RoundScreen";
+import {BetweenRoundsScreen} from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
 import styles from './styles/App.module.scss';
 
 const App: React.FC = () => {
@@ -42,13 +43,15 @@ const App: React.FC = () => {
         {/*<SessionResultScreen*/}
         {/*    scores={scores}*/}
         {/*/>*/}
-        {/*<BetweenRoundsScreen*/}
-        {/*    figures={{*/}
-        {/*      firstFigure: IFigures.scissors,*/}
-        {/*      secondFigure: IFigures.rock*/}
-        {/*    }}*/}
-        {/*/>*/}
-        <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />
+        <BetweenRoundsScreen
+            figures={{
+              firstFigure: IFigures.scissors,
+              secondFigure: IFigures.rock
+            }}
+            currentRoundWinner={IPlayers.secondPlayer}
+            roundResult={IResultEvents.draw}
+        />
+        {/*<RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />*/}
       </div>
   );
 };

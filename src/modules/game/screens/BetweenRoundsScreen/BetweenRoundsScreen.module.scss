@@ -1,22 +1,247 @@
 .betweenRoundsScreen {
-
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .figuresInteraction {
-  width: 50%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.figureIcon {
-  width: 10vw;
-  height: 10vw;
-  background-image: url('../../../../../public/assets/images/png/scissors-icon.jpg');
+.figure {
+  width: 15vw;
+  height: 15vw;
+  position: relative;
+  border-radius: 50%;
+  transform: translateX(300%);
+}
+
+.figureIconHolder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
   background-size: cover;
+  z-index: 1;
+}
+
+.rock .figureIconHolder {
+  background-image: url('../../../../../public/assets/images/png/rock-figure-icon.jpg');
+}
+
+.scissors .figureIconHolder {
+  background-image: url('../../../../../public/assets/images/png/scissors-figure-icon.jpg');
+}
+
+.paper .figureIconHolder {
+  background-image: url('../../../../../public/assets/images/png/paper-figure-icon.jpg');
+}
+
+//first player styles overwriting
+.figure.mirrored {
+  transform: scaleX(-1) translateX(300%);
+}
+
+.unselected,
+.drawIcon {
+  width: 15.5vw;
+  height: 15.5vw;
+  background-size: 128%;
+  background-position: center;
+  background-image: url('../../../../../public/assets/images/png/unselected-figure-icon.jpg');
+  opacity: 0.6;
   border-radius: 50%;
 }
 
-.mirrored {
-  transform: scaleX(-1);
+.drawIcon.fadeIn {
+  transition: .5s ease-out 1s;
+  opacity: .6;
+}
+
+.drawIcon {
+  width: 20vw;
+  height: 20vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: .5s drawIconFadeIn ease-out forwards 0.3s;
+}
+
+//onlineIndicator - online green circle
+//pulsingCreator: before -  first pulsing border
+//pulsingCreator: after - second pulsing border
+//pulsingCreator2: before - third pulsing border
+//pulsingCreator2: after - fourth pulsing border
+.pulsingBordersCreator2:before,
+.pulsingBordersCreator2:after,
+.pulsingBordersCreator:before,
+.pulsingBordersCreator:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 15vw;
+  height: 15vw;
+  background-image: linear-gradient(89.94deg, #FF65A5 0.03%, #7380F8 73.93%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.resultText {
+  position: absolute;
+  left: 50%;
+  bottom: 5vw;
+  transform: translateX(-50%);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 6vw;
+  opacity: 0;
+  animation: resultTextFadeIn 1s ease-out forwards 1.2s;
+}
+
+.resultText span {
+  margin-left: 1vw;
+  font-size: 5vw;
+  font-family: 'Pacifico', cursive;
+}
+
+//ANIMATIONS STYLES
+//second player figure
+.figure.win {
+  animation: secondPlayerWin 0.42s cubic-bezier(.25,.75,.5,1.25) forwards 0.5s;
+  z-index: 2;
+}
+
+.figure.lose {
+  animation: secondPlayerLose 0.7s forwards 0.3s;
 }
 
 
+//first player figure
+.figure.mirrored.win {
+  animation: firstPlayerWin 0.42s cubic-bezier(.25,.75,.5,1.25) forwards 0.5s;
+  z-index: 2;
+}
+
+.figure.mirrored.lose {
+  animation: firstPlayerLose 0.7s forwards 0.3s;
+}
+
+//pulsers
+.pulsingBordersCreator,
+.pulsingBordersCreator2 {
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s;
+  animation: pulseFadeIn 1s ease-out 0.9s forwards;
+}
+
+.pulsingBordersCreator2:before {
+  animation: avatarBorderPulsing 8s infinite cubic-bezier(.21,.46,.81,.91) -3s;
+}
+
+.pulsingBordersCreator2:after {
+  animation: avatarBorderPulsing 8s infinite cubic-bezier(.21,.46,.81,.91) -2s;
+}
+
+.pulsingBordersCreator:before {
+  animation: avatarBorderPulsing 8s infinite cubic-bezier(.21,.46,.81,.91) -1s;
+}
+
+.pulsingBordersCreator:after {
+  animation: avatarBorderPulsing 8s infinite cubic-bezier(.21,.46,.81,.91) 0s;
+}
+
+//KEYFRAMES
+@keyframes firstPlayerWin {
+  from {transform: scaleX(-1) translateX(300%)}
+  to {transform: scaleX(-1) translateX(-167.5%)}
+}
+
+@keyframes firstPlayerLose {
+  0% {
+    transform: scaleX(-1) translateX(300%);
+  }
+
+  40% {
+    transform: scaleX(-1) translateX(-100%);
+  }
+
+  65% {
+    transform: scaleX(-1) translateX(-100%);
+  }
+
+  100% {
+    transform: scaleX(-1) translateX(300%);
+  }
+}
+
+@keyframes secondPlayerWin {
+  from {transform: translateX(300%)}
+  to { transform: translateX(-167.5%) }
+}
+
+
+@keyframes secondPlayerLose {
+  0% {
+    transform: translateX(300%);
+  }
+
+  40% {
+    transform: translateX(-100%);
+  }
+
+  65% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes drawIconFadeIn {
+  from {opacity: 0}
+  to {opacity: .6}
+}
+
+@keyframes pulseFadeIn {
+  from {opacity: 0; visibility: hidden}
+  to {opacity: 0.9; visibility: visible}
+}
+
+@keyframes avatarBorderPulsing {
+  0% {
+    opacity: 0.9;
+    transform: scale(1, 1) rotate(0);
+  }
+  49.999%{
+    opacity: 0;
+    transform: scale(1.5, 1.5) rotate(120deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1, 1) rotate(240deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5, 1.5) rotate(360deg);
+  }
+}
+
+@keyframes resultTextFadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
