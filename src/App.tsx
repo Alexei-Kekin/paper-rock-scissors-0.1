@@ -39,6 +39,15 @@ const App: React.FC = () => {
   return (
       <div className={styles.app}>
         {/*<StartScreen />*/}
+        {/*<SessionResultScreen*/}
+        {/*    scores={scores}*/}
+        {/*/>*/}
+        {/*<BetweenRoundsScreen*/}
+        {/*    figures={{*/}
+        {/*      firstFigure: IFigures.scissors,*/}
+        {/*      secondFigure: IFigures.rock*/}
+        {/*    }}*/}
+        {/*/>*/}
         <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />
       </div>
   );
