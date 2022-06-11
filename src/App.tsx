@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeGamePhase, incrementRoundsCounter, setRoundResult,} from "./modules/game/state/reducer";
+import {changeGamePhase, incrementRoundsCounter, setRoundResult, setRoundFigures as setFigures} from "./modules/game/state/reducer";
 import {phaseTimerInstructions} from "./modules/game/state/selectors";
 import {resultsHandler} from "./modules/game/tools/tools";
 import {IFigures, IGamePhases, IStore} from "./modules/game/types";
 import {RoundScreen} from "./modules/game/screens/RoundScreen/RoundScreen";
-import styles from './styles/App.module.scss';
 import {SessionResultScreen} from "./modules/game/screens/SessionResultScreen/SessionResultScreen";
 import {StartScreen} from "./modules/game/screens/StartScreen/StartScreen";
 import {BetweenRoundsScreen} from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
+import styles from './styles/App.module.scss';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,25 +19,32 @@ const App: React.FC = () => {
   const phaseInstructions = useSelector((state:IStore) => phaseTimerInstructions(state));
 
   const [roundFigures, setRoundFigures] = useState({
-    firstFigure: IFigures.unselected,
-    secondFigure: IFigures.unselected,
+    firstPlayerFigure: IFigures.unselected,
+    secondPlayerFigure: IFigures.unselected,
   });
 
+  // useEffect(() => {
+  //   if (gamePhase !== IGamePhases.startGame || IGamePhases.startResults) {
+  //     setTimeout(() => {
+  //       if (gamePhase === IGamePhases.startRound) {
+  //         dispatch(setRoundResult(resultsHandler(roundFigures, scores)))
+  //       }
+  //       if (gamePhase === IGamePhases.startBetweenRounds) {
+  //         dispatch(incrementRoundsCounter(round + 1));
+  //       }
+  //       dispatch(changeGamePhase(phaseInstructions.nextGamePhase))
+  //     }, phaseInstructions.timerDuration)
+  //   }
+  //
+  // }, [gamePhase]);
 
   useEffect(() => {
-    if (gamePhase !== IGamePhases.startGame || IGamePhases.startResults) {
-      setTimeout(() => {
-        if (gamePhase === IGamePhases.startRound) {
-          dispatch(setRoundResult(resultsHandler(roundFigures, scores)))
-        }
-        if (gamePhase === IGamePhases.startBetweenRounds) {
-          dispatch(incrementRoundsCounter(round + 1));
-        }
-        dispatch(changeGamePhase(phaseInstructions.nextGamePhase))
-      }, phaseInstructions.timerDuration)
-    }
-
-  }, [gamePhase]);
+    const { firstPlayerFigure, secondPlayerFigure } = roundFigures;
+    dispatch(setFigures({
+      firstPlayerFigure,
+      secondPlayerFigure,
+    }))
+  }, [roundFigures.firstPlayerFigure, roundFigures.secondPlayerFigure]);
 
   return (
       <div className={styles.app}>
@@ -47,8 +54,8 @@ const App: React.FC = () => {
         {/*/>*/}
         {/*<BetweenRoundsScreen*/}
         {/*    figures={{*/}
-        {/*      firstFigure: IFigures.scissors,*/}
-        {/*      secondFigure: IFigures.rock*/}
+        {/*      firstPlayerFigure: IFigures.scissors,*/}
+        {/*      secondPlayerFigure: IFigures.rock*/}
         {/*    }}*/}
         {/*/>*/}
         <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />

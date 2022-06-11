@@ -12,8 +12,10 @@ const initialState: IGame = {
         firstPlayerScore: 0,
         secondPlayerScore: 0,
     },
-    firstPlayerFigure: '',
-    secondPlayerFigure: '',
+    selectedFigures: {
+        firstPlayerFigure: '',
+        secondPlayerFigure: '',
+    }
 }
 
 const gameSlice = createSlice({
@@ -29,11 +31,14 @@ const gameSlice = createSlice({
         },
         incrementRoundsCounter: (state, action) => {
             state.round = action.payload;
+        },
+        setRoundFigures: (state, action) => {
+            state.selectedFigures = action.payload;
         }
     }
 });
 
-export const { changeGamePhase, setRoundResult, incrementRoundsCounter } = gameSlice.actions;
+export const { changeGamePhase, setRoundResult, incrementRoundsCounter, setRoundFigures } = gameSlice.actions;
 export default gameSlice.reducer;
 
 // export type RootState = ReturnType<typeof gameSlice>;

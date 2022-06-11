@@ -17,8 +17,8 @@ export enum IResultEvents {
 
 
 export interface IChosenFigures {
-    firstFigure: string,
-    secondFigure: string,
+    firstPlayerFigure: string,
+    secondPlayerFigure: string,
 }
 
 export enum IFigures {
@@ -41,8 +41,7 @@ export interface IGame {
     round: number;
     currentRoundWinner: string;
     scores: IScores;
-    firstPlayerFigure: string;
-    secondPlayerFigure: string;
+    selectedFigures: IChosenFigures;
 }
 
 export interface IStore {

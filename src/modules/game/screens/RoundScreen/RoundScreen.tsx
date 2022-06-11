@@ -6,10 +6,14 @@ import styles from './RoundScreen.module.scss';
 
 interface IRoundScreenProps {
     gamePhase: IGamePhases;
-    chosenFigures: Dispatch<SetStateAction<{  firstFigure: IFigures; secondFigure: IFigures  }>>;
+    chosenFigures: Dispatch<SetStateAction<any>>;
 }
 
-export const RoundScreen: React.FC<IRoundScreenProps> = ({ gamePhase }) => {
+export const RoundScreen: React.FC<IRoundScreenProps> = ({ gamePhase, chosenFigures }) => {
+    const [visibleSeparator, setVisibleSeparator] = useState(false);
+
+    const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
+
     const renderFirstPlayer = useCallback((className: string) => {
         return (
             <div className={className}>
@@ -32,17 +36,13 @@ export const RoundScreen: React.FC<IRoundScreenProps> = ({ gamePhase }) => {
         )
     }, []);
 
-    const [visibleSeparator, setVisibleSeparator] = useState(false);
-
     useEffect(() => {
         setVisibleSeparator(gamePhase === IGamePhases.startRound)
     }, [gamePhase]);
 
-    const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
-
-    // TODO: Remove this code before release
-    console.log('figure1:', firstPlayerFigure)
-    console.log('figure2:', secondPlayerFigure)
+    useEffect(() => {
+        chosenFigures({firstPlayerFigure, secondPlayerFigure})
+    }, [firstPlayerFigure, secondPlayerFigure]);
 
     return (
         <div className={styles.roundScreen} id="roundScreen">
