@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import {
-  changeGamePhase,
-  incrementRoundsCounter,
-  setRoundResult,
-} from "./modules/game/state/reducer";
-import { phaseTimerInstructions } from "./modules/game/state/selectors";
-import { resultsHandler } from "./modules/game/tools/tools";
-//Screens
-import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen";
-//Reused components
-import { Button } from "./components/Button/Button";
-import { Spinner } from "./components/loaders/Spinner/Spinner";
-import { IFigures, IGamePhases, IStore } from "./modules/game/types";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {changeGamePhase, incrementRoundsCounter, setRoundResult,} from "./modules/game/state/reducer";
+import {phaseTimerInstructions} from "./modules/game/state/selectors";
+import {resultsHandler} from "./modules/game/tools/tools";
+import {IFigures, IGamePhases, IStore} from "./modules/game/types";
+import {RoundScreen} from "./modules/game/screens/RoundScreen/RoundScreen";
 import styles from './styles/App.module.scss';
 
 const App: React.FC = () => {
@@ -45,13 +37,13 @@ const App: React.FC = () => {
   }, [gamePhase]);
 
   return (
-    <div className={styles.app}>
-
-
-      <SessionResultScreen
-        scores={scores}
-      />
-    </div>
+      <div className={styles.app}>
+        {/*<StartScreen />*/}
+        {/*<SessionResultScreen*/}
+        {/*    scores={scores}*/}
+        {/*/>*/}
+        <RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />
+      </div>
   );
 };
 
