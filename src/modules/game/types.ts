@@ -48,7 +48,4 @@ export interface IStore {
     game: IGame;
 }
 
-// export interface IPhaseInstructions {
-//     nextGamePhase: string,
-//     timerDuration: number,
-// }
+export type IScreenVisibility = boolean;

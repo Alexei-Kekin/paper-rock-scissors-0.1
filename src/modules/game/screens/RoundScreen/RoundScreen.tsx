@@ -8,11 +8,16 @@ import styles from './RoundScreen.module.scss';
 
 interface IRoundScreenProps {
     chosenFigures: Dispatch<SetStateAction<any>>;
-    isVisible: boolean;
+    // isVisible: boolean;
 }
 
-export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisible }) => {
+export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures }) => {
     const [visibleSeparator, setVisibleSeparator] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+
+    setTimeout(() => setIsVisible(false), 5000)
+    setTimeout(() => setIsVisible(true), 8000)
+
 
     const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
 

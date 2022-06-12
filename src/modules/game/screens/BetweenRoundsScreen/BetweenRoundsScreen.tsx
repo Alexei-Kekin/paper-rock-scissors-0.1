@@ -1,15 +1,18 @@
 import React from 'react';
-import { IChosenFigures, IFigures } from "../../types";
+import { AnimatePresence, motion } from "framer-motion";
+import { IChosenFigures, IFigures, IScreenVisibility } from "../../types";
 import classNames from "classnames";
 import styles from './BetweenRoundsScreen.module.scss';
 
 interface IBetweenRoundsScreen {
+  isVisible: IScreenVisibility
   figures: IChosenFigures,
   currentRoundWinner: string,
   roundResult: string,
 }
 
 export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
+  isVisible,
   figures,
   currentRoundWinner ,
   roundResult
@@ -28,38 +31,48 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
   };
 
   return (
-    <div className={styles.betweenRoundsScreen}>
-      <div className={styles.figuresInteraction}>
-        { roundResult === 'WIN' && Object.values(figures).map((figure, i) => {
-          return (
-            <div
-              key={figure + i}
-              className={classNames(
-                mapFiguresToClasses[figure],
-                styles.figure,
-                { [styles.mirrored]: i === 0 },
-                { [styles.win]: mapPlayersToIs[currentRoundWinner] === i },
-                { [styles.lose]: mapPlayersToIs[currentRoundWinner] !== i }
-              )}
-            >
-              <div className={styles.figureIconHolder} />
-              { mapPlayersToIs[currentRoundWinner] === i && (
-                <>
-                  <div className={styles.pulsingBordersCreator} />
-                  <div className={styles.pulsingBordersCreator2} />
-                </>
-              ) }
+    <AnimatePresence>
+      { isVisible && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className={styles.betweenRoundsScreen}>
+            <div className={styles.figuresInteraction}>
+              { roundResult === 'WIN' && Object.values(figures).map((figure, i) => {
+                return (
+                  <div
+                    key={figure + i}
+                    className={classNames(
+                      mapFiguresToClasses[figure],
+                      styles.figure,
+                      { [styles.mirrored]: i === 0 },
+                      { [styles.win]: mapPlayersToIs[currentRoundWinner] === i },
+                      { [styles.lose]: mapPlayersToIs[currentRoundWinner] !== i }
+                    )}
+                  >
+                    <div className={styles.figureIconHolder} />
+                    { mapPlayersToIs[currentRoundWinner] === i && (
+                      <>
+                        <div className={styles.pulsingBordersCreator} />
+                        <div className={styles.pulsingBordersCreator2} />
+                      </>
+                    ) }
+                  </div>
+                )
+              }) }
+              {/*draw output*/}
+              { roundResult === 'DRAW' && <div className={styles.drawIcon} /> }
             </div>
-          )
-        }) }
-        {/*draw output*/}
-        { roundResult === 'DRAW' && <div className={styles.drawIcon} /> }
-      </div>
-      {/*{Round result text output}*/}
-      <div className={styles.resultText}>
-        { roundResult !== 'DRAW' && currentRoundWinner }
-        <span>{ roundResult === 'WIN' ? 'WINS' : roundResult }</span>
-      </div>
-    </div>
+            {/*{Round result text output}*/}
+            <div className={styles.resultText}>
+              { roundResult !== 'DRAW' && currentRoundWinner }
+              <span>{ roundResult === 'WIN' ? 'WINS' : roundResult }</span>
+            </div>
+          </div>
+        </motion.div>
+      ) }
+    </AnimatePresence>
   )
 }
