@@ -9,7 +9,7 @@ import {
 } from "./modules/game/state/reducer";
 import { phaseTimerInstructions } from "./modules/game/state/selectors";
 import { resultsHandler } from "./modules/game/tools/tools";
-import { IFigures, IGamePhases, IPlayers, IResultEvents, IStore } from "./modules/game/types";
+import { IFigures, IGamePhases, IPlayers, IStore } from "./modules/game/types";
 import { StartScreen } from "./modules/game/screens/StartScreen/StartScreen";
 import { RoundScreen } from "./modules/game/screens/RoundScreen/RoundScreen";
 import { BetweenRoundsScreen } from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
@@ -27,6 +27,7 @@ const App: React.FC = () => {
   const selectedFigures = useSelector((state: IStore) => state.game.selectedFigures);
   const currentRoundWinner = useSelector((state:IStore) => state.game.currentRoundWinner);
 
+  console.log('selected', selectedFigures)
   const [roundFigures, setRoundFigures] = useState({
     firstPlayerFigure: IFigures.unselected,
     secondPlayerFigure: IFigures.unselected,
@@ -82,7 +83,6 @@ const App: React.FC = () => {
             isVisible={gamePhase === IGamePhases.startBetweenRounds}
             figures={selectedFigures}
             currentRoundWinner={currentRoundWinner}
-            roundResult={IResultEvents.win}
         />
         <SessionResultScreen
           isVisible={gamePhase === IGamePhases.startResults}
