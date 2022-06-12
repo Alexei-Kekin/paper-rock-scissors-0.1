@@ -1,3 +1,24 @@
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(0, 0, 0, 0.3);
+  }
+
+  70% {
+    box-shadow: 0 0 0 14px rgba(0, 0, 0, 0), 0 0 0 8px rgba(0, 0 ,0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0 ,0, 0);
+  }
+}
+
+%figureImgStyles {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+  animation: 1.6s pulse ease-out infinite;
+}
+
 .player {
   display: flex;
   flex-direction: column;
@@ -10,6 +31,46 @@
   font-size: 2vw;
 }
 
-.container {
-  margin-top: 20px;
+.figures {
+  display: flex;
+  margin-top: 5vw;
+}
+
+.paperFigure,
+.scissorsFigure,
+.rockFigure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 3vw;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.paperImg {
+  @extend %figureImgStyles;
+  background: url('../../../../../public/assets/images/png/paper-figure-icon.jpg') no-repeat 50% / 100%;
+}
+
+.scissorsImg {
+  @extend %figureImgStyles;
+  background: url('../../../../../public/assets/images/png/scissors-figure-icon.jpg') no-repeat 50% / 100%;
+  animation-delay: .2s;
+}
+
+.rockImg {
+  @extend %figureImgStyles;
+  background: url('../../../../../public/assets/images/png/rock-figure-icon.jpg') no-repeat 50% / 100%;
+  animation-delay: .4s;
+}
+
+.revertImg {
+  transform: scaleX(-1);
+}
+
+.description {
+  margin-top: 2vw;
+  font-size: 2vw;
 }
