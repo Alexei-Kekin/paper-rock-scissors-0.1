@@ -36,12 +36,14 @@ export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisi
                 >
                     <div className={classNames(styles.separator, visibleSeparator && styles.visible)} />
                     <PlayerComponent
+                        player={IPlayers.firstPlayer}
                         title={`Chose figure for ${IPlayers.firstPlayer}`}
                         chosePaper={'Q'}
                         choseScissors={'W'}
                         choseRock={'E'}
                     />
                     <PlayerComponent
+                        player={IPlayers.secondPlayer}
                         title={`Chose figure for ${IPlayers.secondPlayer}`}
                         chosePaper={'Numpad 1'}
                         choseScissors={'Numpad 2'}
