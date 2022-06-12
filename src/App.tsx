@@ -38,6 +38,14 @@ const App: React.FC = () => {
   //
   // }, [gamePhase]);
 
+    const [isVisible, setIsVisible] = useState(true);
+
+    const visible = () => setTimeout(() => setIsVisible(false), 5000)
+    const visible2 = () => setTimeout(() => setIsVisible(true), 8000)
+
+    // visible();
+    // visible2();
+
   useEffect(() => {
     const { firstPlayerFigure, secondPlayerFigure } = roundFigures;
     dispatch(setFigures({
@@ -52,15 +60,15 @@ const App: React.FC = () => {
         {/*<SessionResultScreen*/}
         {/*    scores={scores}*/}
         {/*/>*/}
-        <BetweenRoundsScreen
-            figures={{
-              firstPlayerFigure: IFigures.scissors,
-              secondPlayerFigure: IFigures.rock
-            }}
-            currentRoundWinner={IPlayers.firstPlayer}
-            roundResult={IResultEvents.win}
-        />
-        {/*<RoundScreen gamePhase={IGamePhases.startRound} chosenFigures={setRoundFigures} />*/}
+        {/*<BetweenRoundsScreen*/}
+        {/*    figures={{*/}
+        {/*      firstPlayerFigure: IFigures.rock,*/}
+        {/*      secondPlayerFigure: IFigures.rock*/}
+        {/*    }}*/}
+        {/*    currentRoundWinner={IPlayers.firstPlayer}*/}
+        {/*    roundResult={IResultEvents.win}*/}
+        {/*/>*/}
+        <RoundScreen chosenFigures={setRoundFigures} isVisible={isVisible} />
       </div>
   );
 };

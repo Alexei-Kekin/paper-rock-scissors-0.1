@@ -1,0 +1,15 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.title {
+  font-size: 2vw;
+}
+
+.container {
+  margin-top: 20px;
+}

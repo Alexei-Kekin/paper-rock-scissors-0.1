@@ -1,54 +1,54 @@
-import React, {Dispatch, SetStateAction, useCallback, useEffect, useState} from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import classNames from "classnames";
-import {IFigures, IGamePhases, IPlayers} from "../../types";
+import { motion, AnimatePresence } from "framer-motion";
+import { IPlayers } from "../../types";
 import { useAssignFigureToPlayer } from "../../../../hooks/useAssignFigureToPlayer";
+import { PlayerComponent } from "./PlayerComponent";
 import styles from './RoundScreen.module.scss';
 
 interface IRoundScreenProps {
-    gamePhase: IGamePhases;
     chosenFigures: Dispatch<SetStateAction<any>>;
+    isVisible: boolean;
 }
 
-export const RoundScreen: React.FC<IRoundScreenProps> = ({ gamePhase, chosenFigures }) => {
+export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisible }) => {
     const [visibleSeparator, setVisibleSeparator] = useState(false);
 
     const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
 
-    const renderFirstPlayer = useCallback((className: string) => {
-        return (
-            <div className={className}>
-                Chose figure for { IPlayers.firstPlayer }
-                <div style={{ marginTop: '20px' }}>Q paper</div>
-                <div>W scissors</div>
-                <div>E rock</div>
-            </div>
-        )
-    }, []);
-
-    const renderSecondPlayer = useCallback((className: string) => {
-        return (
-            <div className={className}>
-               Chose figure for { IPlayers.secondPlayer }
-                <div style={{ marginTop: '20px' }}>Numpad1 paper</div>
-                <div>Numpad2 scissors</div>
-                <div>Numpad3 rock</div>
-            </div>
-        )
-    }, []);
-
     useEffect(() => {
-        setVisibleSeparator(gamePhase === IGamePhases.startRound)
-    }, [gamePhase]);
+        setVisibleSeparator(isVisible)
+    }, [isVisible]);
 
     useEffect(() => {
         chosenFigures({firstPlayerFigure, secondPlayerFigure})
     }, [firstPlayerFigure, secondPlayerFigure]);
 
     return (
-        <div className={styles.roundScreen} id="roundScreen">
-            <div className={classNames(styles.separator, visibleSeparator && styles.visible)} />
-            { renderFirstPlayer(styles.player) }
-            { renderSecondPlayer(styles.player) }
-        </div>
+        <AnimatePresence>
+            { isVisible && (
+                <motion.div
+                    id="roundScreen"
+                    className={styles.roundScreen}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <div className={classNames(styles.separator, visibleSeparator && styles.visible)} />
+                    <PlayerComponent
+                        title={`Chose figure for ${IPlayers.firstPlayer}`}
+                        chosePaper={'Q'}
+                        choseScissors={'W'}
+                        choseRock={'E'}
+                    />
+                    <PlayerComponent
+                        title={`Chose figure for ${IPlayers.secondPlayer}`}
+                        chosePaper={'Numpad 1'}
+                        choseScissors={'Numpad 2'}
+                        choseRock={'Numpad 3'}
+                    />
+                </motion.div>
+            ) }
+        </AnimatePresence>
     );
 };

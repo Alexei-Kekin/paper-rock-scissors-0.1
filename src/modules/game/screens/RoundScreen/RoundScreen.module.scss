@@ -47,11 +47,3 @@
 .visible {
   animation: fade-in-out-separator 5s ease-in-out forwards;
 }
-
-.player {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
