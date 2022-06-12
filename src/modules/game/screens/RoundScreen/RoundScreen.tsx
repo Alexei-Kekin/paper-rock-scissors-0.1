@@ -1,23 +1,18 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import classNames from "classnames";
 import { motion, AnimatePresence } from "framer-motion";
-import { IPlayers } from "../../types";
+import {IPlayers, IScreenVisibility} from "../../types";
 import { useAssignFigureToPlayer } from "../../../../hooks/useAssignFigureToPlayer";
 import { PlayerComponent } from "./PlayerComponent";
 import styles from './RoundScreen.module.scss';
 
 interface IRoundScreenProps {
     chosenFigures: Dispatch<SetStateAction<any>>;
-    // isVisible: boolean;
+    isVisible: IScreenVisibility;
 }
 
-export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures }) => {
+export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisible }) => {
     const [visibleSeparator, setVisibleSeparator] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
-
-    setTimeout(() => setIsVisible(false), 5000)
-    setTimeout(() => setIsVisible(true), 8000)
-
 
     const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
 

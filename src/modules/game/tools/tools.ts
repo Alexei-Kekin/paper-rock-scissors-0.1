@@ -2,16 +2,15 @@ import { IChosenFigures, IFigures, IPlayers, IResultEvents, IScores } from "../t
 
 export const resultsHandler = ({firstPlayerFigure, secondPlayerFigure}: IChosenFigures, scores: IScores) => {
   //both figures 'unselected'
-  if (firstPlayerFigure === IFigures.unselected && secondPlayerFigure === IFigures.unselected) {
-    return { currentWinner: IResultEvents, scores }
+  if ((firstPlayerFigure === IFigures.unselected && secondPlayerFigure === IFigures.unselected) || firstPlayerFigure === secondPlayerFigure) {
+    return { currentWinner: IResultEvents.draw, scores }
   }
   //each one 'selected'
   const figuresSequences = ['unselected', 'paper', 'scissors', 'rock'];
   let currentWinner;
 
   if (figuresSequences.indexOf(firstPlayerFigure) > figuresSequences.indexOf(secondPlayerFigure)
-    || (firstPlayerFigure === IFigures.paper && secondPlayerFigure === IFigures.rock)
-    || (firstPlayerFigure !== IFigures.rock && IFigures.paper)) {
+      && (secondPlayerFigure !== IFigures.paper || firstPlayerFigure !== IFigures.rock)) {
     scores.firstPlayerScore += 1;
     currentWinner = IPlayers.firstPlayer
   } else {

@@ -1,6 +1,7 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { IGamePhases, IStore } from "../types";
+import {createSelector} from "@reduxjs/toolkit";
+import {IGamePhases, IStore} from "../types";
 
+const isGameStarted = (state: IStore) => state.game.isGameStarted;
 const roundTimer = (state: IStore) => state.game.roundTimer;
 const betweenRoundsTimer = (state: IStore) => state.game.betweenRoundsTimer;
 const gamePhase = (state: IStore) => state.game.gamePhase;
@@ -8,16 +9,16 @@ const lastRoundCount = (state: IStore) => state.game.lastRoundCount;
 const round = (state: IStore) => state.game.round;
 
 export const phaseTimerInstructions:any = createSelector(
-  [gamePhase, roundTimer, betweenRoundsTimer, round, lastRoundCount],
-  (gamePhase, roundTimer, betweenRoundTimer, round, lastRoundCount) => {
+  [isGameStarted, gamePhase, roundTimer, betweenRoundsTimer, round, lastRoundCount],
+  (isGameStarted, gamePhase, roundTimer, betweenRoundsTimer, round, lastRoundCount) => {
     let result = {
       nextGamePhase: '',
-      timerDuration: gamePhase === IGamePhases.startGame ?  roundTimer: betweenRoundsTimer,
+      timerDuration: gamePhase === IGamePhases.startGame ? roundTimer : betweenRoundsTimer,
     };
 
     switch (gamePhase) {
       case IGamePhases.startGame:
-        result.nextGamePhase = IGamePhases.startRound;
+        result.nextGamePhase = isGameStarted ? IGamePhases.startRound : IGamePhases.startGame;
         break;
 
       case IGamePhases.startRound:

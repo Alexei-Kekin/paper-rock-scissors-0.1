@@ -1,14 +1,14 @@
 import React from 'react';
 import { AnimatePresence, motion } from "framer-motion";
-import { IChosenFigures, IFigures, IScreenVisibility } from "../../types";
+import {IChosenFigures, IFigures, IResultEvents, IScreenVisibility} from "../../types";
 import classNames from "classnames";
 import styles from './BetweenRoundsScreen.module.scss';
 
 interface IBetweenRoundsScreen {
-  isVisible: IScreenVisibility
-  figures: IChosenFigures,
-  currentRoundWinner: string,
-  roundResult: string,
+  isVisible: IScreenVisibility;
+  figures: IChosenFigures;
+  currentRoundWinner: string;
+  roundResult: string;
 }
 
 export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
@@ -63,12 +63,12 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
                 )
               }) }
               {/*draw output*/}
-              { roundResult === 'DRAW' && <div className={styles.drawIcon} /> }
+              { roundResult === IResultEvents.draw && <div className={styles.drawIcon} /> }
             </div>
             {/*{Round result text output}*/}
             <div className={styles.resultText}>
-              { roundResult !== 'DRAW' && currentRoundWinner }
-              <span>{ roundResult === 'WIN' ? 'WINS' : roundResult }</span>
+              { roundResult !== IResultEvents.draw && currentRoundWinner }
+              <span>{ roundResult === IResultEvents.win ? 'WINS' : IResultEvents.draw }</span>
             </div>
           </div>
         </motion.div>

@@ -2,10 +2,11 @@ import { IGame, IGamePhases } from "../types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IGame = {
+    isGameStarted: false,
     gamePhase: IGamePhases.startGame,
     roundTimer: 3000,
     betweenRoundsTimer: 5000,
-    lastRoundCount: 5,
+    lastRoundCount: 4,
     round: 1,
     currentRoundWinner: '',
     scores: {
@@ -22,6 +23,9 @@ const gameSlice = createSlice({
     name: 'gameReducer',
     initialState,
     reducers: {
+        setStartGame: (state, action) => {
+            state.isGameStarted = action.payload;
+        },
         changeGamePhase: (state, action) => {
             state.gamePhase = action.payload;
         },
@@ -38,7 +42,7 @@ const gameSlice = createSlice({
     }
 });
 
-export const { changeGamePhase, setRoundResult, incrementRoundsCounter, setRoundFigures } = gameSlice.actions;
+export const { setStartGame, changeGamePhase, setRoundResult, incrementRoundsCounter, setRoundFigures } = gameSlice.actions;
 export default gameSlice.reducer;
 
 // export type RootState = ReturnType<typeof gameSlice>;

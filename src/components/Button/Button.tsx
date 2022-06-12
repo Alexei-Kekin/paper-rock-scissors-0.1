@@ -70,7 +70,6 @@ export const Button = React.forwardRef<HTMLAnchorElement & HTMLButtonElement, IB
             {...generalProps}
             type={type}
             disabled={disabled || isLoading}
-            onMouseEnter={() => new Audio('/audio/hoverEffect.wav').play()}
         >
             { content }
             <div className={styles.background} />

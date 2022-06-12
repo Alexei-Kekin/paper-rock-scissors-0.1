@@ -34,6 +34,7 @@ export interface IScores {
 }
 
 export interface IGame {
+    isGameStarted: boolean;
     gamePhase: string;
     roundTimer: number;
     betweenRoundsTimer: number;
