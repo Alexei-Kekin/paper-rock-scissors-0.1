@@ -25,6 +25,7 @@ const App: React.FC = () => {
   //For BetweenRoundScreen props
   const selectedFigures = useSelector((state: IStore) => state.game.selectedFigures);
   const currentWinner = useSelector((state: IStore) => state.game.currentRoundWinner);
+  const roundTimer = useSelector((state: IStore) => state.game.roundTimer);
 
   const [roundFigures, setRoundFigures] = useState({
     firstPlayerFigure: IFigures.unselected,
@@ -83,6 +84,7 @@ const App: React.FC = () => {
       />
       <RoundScreen
           chosenFigures={setRoundFigures}
+          roundTimer={roundTimer}
           isVisible={gamePhase === IGamePhases.startRound}
       />
       <BetweenRoundsScreen

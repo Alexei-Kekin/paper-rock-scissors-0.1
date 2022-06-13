@@ -1,0 +1,25 @@
+.roundTimer{
+  height: 40px;
+  width: 560px;
+  border-radius: 30px;
+  background: #ffffff;
+}
+
+.timeline {
+  height: inherit;
+  width: 100%;
+}
+
+.img {
+  height: 40px;
+  width: 40px;
+  opacity: 1;
+  visibility: visible;
+  object-fit: contain;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}

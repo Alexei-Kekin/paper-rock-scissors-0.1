@@ -37,3 +37,10 @@
   transform: translate(-50%, -50%);
   animation: fade-in 5s ease-in-out forwards;
 }
+
+.progress {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

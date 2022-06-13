@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
-import { IPlayers } from "../../types";
+import { IPlayers } from "../../../types";
 import styles from './PlayerComponent.module.scss';
 
 interface IPlayerComponentProps {

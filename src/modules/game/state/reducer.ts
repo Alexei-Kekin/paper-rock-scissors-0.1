@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: IGame = {
     isGameStarted: false,
     gamePhase: IGamePhases.startGame,
-    roundTimer: 6000,
+    roundTimer: 4000,
     betweenRoundsTimer: 5000,
     lastRoundCount: 4,
     round: 1,

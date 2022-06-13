@@ -51,20 +51,20 @@
 
 .paperImg {
   @extend %figureImgStyles;
-  background: url('../../../../../public/assets/images/png/paper-figure-icon.jpg');
+  background: url('../../../../../../public/assets/images/png/paper-figure-icon.jpg');
   background-size: cover;
 }
 
 .scissorsImg {
   @extend %figureImgStyles;
-  background: url('../../../../../public/assets/images/png/scissors-figure-icon.jpg');
+  background: url('../../../../../../public/assets/images/png/scissors-figure-icon.jpg');
   background-size: cover;
   animation-delay: .2s;
 }
 
 .rockImg {
   @extend %figureImgStyles;
-  background: url('../../../../../public/assets/images/png/rock-figure-icon.jpg');
+  background: url('../../../../../../public/assets/images/png/rock-figure-icon.jpg');
   background-size: cover;
   animation-delay: .4s;
 }

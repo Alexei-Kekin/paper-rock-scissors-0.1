@@ -2,15 +2,17 @@ import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import {IPlayers, IScreenVisibility} from "../../types";
 import { useAssignFigureToPlayer } from "../../../../hooks/useAssignFigureToPlayer";
-import { PlayerComponent } from "./PlayerComponent";
+import { PlayerComponent } from "./PlayerComponent/PlayerComponent";
+import { RoundTimer } from "./RoundTimer/RoundTimer";
 import styles from './RoundScreen.module.scss';
 
 interface IRoundScreenProps {
     chosenFigures: Dispatch<SetStateAction<any>>;
+    roundTimer: number;
     isVisible: IScreenVisibility;
 }
 
-export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisible }) => {
+export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, roundTimer, isVisible }) => {
     const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
 
     useEffect(() => {
@@ -41,6 +43,10 @@ export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisi
                         chosePaper={'Numpad 1'}
                         choseScissors={'Numpad 2'}
                         choseRock={'Numpad 3'}
+                    />
+                    <RoundTimer
+                        className={styles.progress}
+                        roundTimerDuration={roundTimer}
                     />
                 </motion.div>
             ) }
