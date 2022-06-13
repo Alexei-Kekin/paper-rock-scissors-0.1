@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { IChosenFigures, IFigures, IScores, IScreenVisibility } from "../../types";
-import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import styles from './BetweenRoundsScreen.module.scss';
 
@@ -11,13 +10,11 @@ interface IBetweenRoundsScreen {
   currentRoundWinner: string;
 }
 
-export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
+export const BetweenRoundsScreen:React.FC<IBetweenRoundsScreen> = ({
   isVisible,
   figures,
   currentRoundWinner ,
 }) => {
-
-  const dispatch = useDispatch();
 
   const mapFiguresToClasses: any = {
     [IFigures.rock]: styles.rock,
@@ -41,7 +38,7 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
         >
           <div className={styles.betweenRoundsScreen}>
             <div className={styles.figuresInteraction}>
-              { currentRoundWinner !== 'DRAW' && Object.values(figures).map((figure, i) => {
+              { Object.values(figures).map((figure, i) => {
                 return (
                   <div
                     key={figure + i}
@@ -50,7 +47,8 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
                       styles.figure,
                       { [styles.mirrored]: i === 0 },
                       { [styles.win]: mapPlayersToIs[currentRoundWinner] === i },
-                      { [styles.lose]: mapPlayersToIs[currentRoundWinner] !== i }
+                      { [styles.lose]: mapPlayersToIs[currentRoundWinner] !== i },
+                      { [styles.draw]: currentRoundWinner === 'DRAW' },
                     )}
                   >
                     <div className={styles.figureIconHolder} />
@@ -63,8 +61,6 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
                   </div>
                 )
               }) }
-              {/*draw output*/}
-              { currentRoundWinner === 'DRAW' && <div className={styles.drawIcon} /> }
             </div>
             {/*{Round result text output}*/}
             <div

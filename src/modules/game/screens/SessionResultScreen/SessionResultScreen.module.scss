@@ -6,11 +6,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: #060607;
-  color: #5538bf;
-  //top: 50%;
-  //left: 50%;
-  //transform: translate(-50%, -50%);
+  color: black;
 }
 
 .descriptionTitle,
@@ -23,8 +19,7 @@
 }
 
 .values {
-  margin-top: 2vw;
-  font-family: 'Pacifico', cursive;
+  margin-top: 4vw;
   font-size: 6vw;
 }
 
@@ -39,10 +34,21 @@
   flex-direction: column;
   transform: translateY(100%);
   animation: textFadeIn 0.5s cubic-bezier(.25,.75,.5,1.25) 2s forwards;
+  & > span {
+    margin-top: 0.5vw;
+    text-align: center;
+  }
 
-  & span {
-    margin-top: 2vw;
-    font-family: 'Bebas Neue', cursive;
+  & > span > span {
+    margin-left: 0.8vw;
+    font-family: 'Pacifico', cursive;
+    font-size: 5vw;
+  }
+
+  & > div {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 5.5vw;
   }
 }
 
@@ -58,6 +64,13 @@
   animation: iconFadeIn 1.3s cubic-bezier(0.40, 0.05, 0.55, 0.75) 2s forwards;
 }
 
+.restartGameButton {
+  margin-top: 5vw;
+  background: #8456d6;
+  opacity: 0;
+  animation: buttonFadeIn 0.8s ease-out 1.5s forwards;
+}
+
 @keyframes textFadeIn {
   from {transform: translateY(100%)}
   to {transform: translateY(0)}
@@ -66,4 +79,9 @@
 @keyframes iconFadeIn {
   from {transform: translateX(-200%)}
   to {transform: translateX(0)}
+}
+
+@keyframes buttonFadeIn {
+  from {opacity: 0}
+  to { opacity: 1}
 }

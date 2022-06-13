@@ -51,8 +51,7 @@
   transform: scaleX(-1) translateX(300%);
 }
 
-.unselected,
-.drawIcon {
+.unselected {
   width: 15.5vw;
   height: 15.5vw;
   background-size: 128%;
@@ -60,18 +59,6 @@
   background-image: url('../../../../../public/assets/images/png/unselected-figure-icon.jpg');
   opacity: 0.6;
   border-radius: 50%;
-}
-
-
-.drawIcon {
-  width: 20vw;
-  height: 20vw;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  animation: 0.7s drawIconFadeIn ease-in-out forwards 0.3s;
 }
 
 //onlineIndicator - online green circle
@@ -116,6 +103,10 @@
   font-family: 'Pacifico', cursive;
 }
 
+.resultTextWhileDraw span {
+  margin-left: initial;
+}
+
 //ANIMATIONS STYLES
 //second player figure
 .figure.win {
@@ -127,6 +118,10 @@
   animation: secondPlayerLose 0.7s forwards 0.3s;
 }
 
+.figure.draw {
+  animation: secondPlayerDraw 0.7s ease-out forwards 0.3s;
+}
+
 //first player figure
 .figure.mirrored.win {
   animation: firstPlayerWin 0.42s cubic-bezier(.25,.75,.5,1.25) forwards 0.5s;
@@ -135,6 +130,10 @@
 
 .figure.mirrored.lose {
   animation: firstPlayerLose 0.7s forwards 0.3s;
+}
+
+.figure.mirrored.draw {
+  animation: firstPlayerDraw 0.7s ease-out forwards 0.3s;
 }
 
 //pulsers
@@ -186,11 +185,15 @@
   }
 }
 
-@keyframes secondPlayerWin {
-  from {transform: translateX(300%)}
-  to { transform: translateX(-167.5%) }
+@keyframes firstPlayerDraw {
+  from {transform: scaleX(-1) translateX(300%)}
+  to {transform: scaleX(-1) translateX(-230%)}
 }
 
+@keyframes secondPlayerWin {
+  from {transform: translateX(300%)}
+  to {transform: translateX(-167.5%)}
+}
 
 @keyframes secondPlayerLose {
   0% {
@@ -210,9 +213,10 @@
   }
 }
 
-@keyframes drawIconFadeIn {
-  from {opacity: 0}
-  to {opacity: .6}
+
+@keyframes secondPlayerDraw {
+  from {transform: translateX(300%)}
+  to {transform: translateX(-230%)}
 }
 
 @keyframes pulseFadeIn {
