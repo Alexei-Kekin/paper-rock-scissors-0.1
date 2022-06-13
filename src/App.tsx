@@ -38,7 +38,6 @@ const App: React.FC = () => {
       dispatch(changeGamePhase(IGamePhases.startRound));
   }, []);
 
-
   useEffect(() => {
     if (gamePhase !== IGamePhases.startGame && gamePhase !== IGamePhases.startResults) {
 
@@ -48,6 +47,10 @@ const App: React.FC = () => {
         }
         if (gamePhase === IGamePhases.startBetweenRounds) {
           dispatch(incrementRoundsCounter(round + 1));
+          setRoundFigures({
+            firstPlayerFigure: IFigures.unselected,
+            secondPlayerFigure: IFigures.unselected,
+          })
         }
         dispatch(changeGamePhase(phaseInstructions.nextGamePhase))
       }, phaseInstructions.timerDuration)
