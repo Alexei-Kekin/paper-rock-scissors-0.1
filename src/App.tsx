@@ -64,7 +64,7 @@ const App: React.FC = () => {
       dispatch(setFigures({
         firstPlayerFigure,
         secondPlayerFigure,
-      }))
+      }));
       dispatch(setCurrentRoundResults(
         resultsHandler(
           {firstPlayerFigure, secondPlayerFigure},
