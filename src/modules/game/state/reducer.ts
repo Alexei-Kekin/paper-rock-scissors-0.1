@@ -4,11 +4,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState: IGame = {
     isGameStarted: false,
     gamePhase: IGamePhases.startGame,
-    roundTimer: 3000,
+    roundTimer: 6000,
     betweenRoundsTimer: 5000,
     lastRoundCount: 4,
     round: 1,
-    currentRoundWinner: '',
     scores: {
         firstPlayerScore: 0,
         secondPlayerScore: 0,
@@ -16,7 +15,8 @@ const initialState: IGame = {
     selectedFigures: {
         firstPlayerFigure: '',
         secondPlayerFigure: '',
-    }
+    },
+    currentRoundWinner: '',
 }
 
 const gameSlice = createSlice({
@@ -29,9 +29,9 @@ const gameSlice = createSlice({
         changeGamePhase: (state, action) => {
             state.gamePhase = action.payload;
         },
-        setRoundResult: (state, action) => {
-            state.scores = action.payload.scores;
-            state.currentRoundWinner = action.payload.currentWinner;
+        setCurrentRoundResults: (state, action) => {
+            state.currentRoundWinner = action.payload.currentRoundWinner;
+            state.scores = action.payload.currentScores;
         },
         incrementRoundsCounter: (state, action) => {
             state.round = action.payload;
@@ -42,7 +42,7 @@ const gameSlice = createSlice({
     }
 });
 
-export const { setStartGame, changeGamePhase, setRoundResult, incrementRoundsCounter, setRoundFigures } = gameSlice.actions;
+export const { setStartGame, changeGamePhase, incrementRoundsCounter, setRoundFigures, setCurrentRoundResults } = gameSlice.actions;
 export default gameSlice.reducer;
 
 // export type RootState = ReturnType<typeof gameSlice>;
