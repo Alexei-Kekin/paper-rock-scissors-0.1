@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
-import { IChosenFigures, IFigures, IScreenVisibility } from "../../types";
+import { IChosenFigures, IFigures, IScores, IScreenVisibility } from "../../types";
+import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import styles from './BetweenRoundsScreen.module.scss';
 
@@ -14,12 +15,17 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
   isVisible,
   figures,
   currentRoundWinner ,
+
 }) => {
 
-  console.log({
-    figures,
-    currentRoundWinner,
-  })
+  // console.log({currentRoundWinner, figures});
+
+  const dispatch = useDispatch();
+
+  // console.log({
+  //   figures,
+  //   currentRoundWinner,
+  // })
   const mapFiguresToClasses: any = {
     [IFigures.rock]: styles.rock,
     [IFigures.scissors]: styles.scissors,
