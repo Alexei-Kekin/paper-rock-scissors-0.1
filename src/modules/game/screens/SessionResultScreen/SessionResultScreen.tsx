@@ -16,8 +16,8 @@ export const SessionResultScreen: React.FC<ISessionResultScreen> = ({
     firstPlayerScore === secondPlayerScore
       ? IResultEvents.draw
       : firstPlayerScore > secondPlayerScore
-        ? IPlayers.firstPlayer + IResultEvents.win
-        : IPlayers.secondPlayer + IResultEvents.win
+        ? IPlayers.firstPlayer + 'WINS'
+        : IPlayers.secondPlayer + "WINS"
 
   return (
     <AnimatePresence>

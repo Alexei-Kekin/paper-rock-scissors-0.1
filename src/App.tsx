@@ -12,12 +12,11 @@ import { RoundScreen } from "./modules/game/screens/RoundScreen/RoundScreen";
 import { BetweenRoundsScreen } from "./modules/game/screens/BetweenRoundsScreen/BetweenRoundsScreen";
 import { SessionResultScreen } from "./modules/game/screens/SessionResultScreen/SessionResultScreen";
 import { IFigures, IGamePhases, IStore } from "./modules/game/types";
+import { resultsHandler } from "./modules/game/tools/tools";
 import styles from './styles/App.module.scss';
-import {resultsHandler} from "./modules/game/tools/tools";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-
 
   const round = useSelector((state:IStore) => state.game.round);
   const scores = useSelector((state:IStore) => state.game.scores);
@@ -57,7 +56,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (isRoundResultsSetEnable) {
-      console.log('1')
       const { firstPlayerFigure, secondPlayerFigure } = roundFigures;
       dispatch(setFigures({
         firstPlayerFigure,

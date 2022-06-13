@@ -15,17 +15,10 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
   isVisible,
   figures,
   currentRoundWinner ,
-
 }) => {
-
-  // console.log({currentRoundWinner, figures});
 
   const dispatch = useDispatch();
 
-  // console.log({
-  //   figures,
-  //   currentRoundWinner,
-  // })
   const mapFiguresToClasses: any = {
     [IFigures.rock]: styles.rock,
     [IFigures.scissors]: styles.scissors,
@@ -74,7 +67,12 @@ export const BetweenRoundsScreen: React.FC<IBetweenRoundsScreen> = ({
               { currentRoundWinner === 'DRAW' && <div className={styles.drawIcon} /> }
             </div>
             {/*{Round result text output}*/}
-            <div className={styles.resultText}>
+            <div
+              className={classNames(
+                styles.resultText,
+                { [styles.resultTextWhileDraw]: currentRoundWinner === 'DRAW' }
+              )}
+            >
               { currentRoundWinner !== 'DRAW' && currentRoundWinner }
               <span>{ currentRoundWinner !== 'DRAW' ? 'WINS' : "DRAW" }</span>
             </div>

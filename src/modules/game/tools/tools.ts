@@ -5,7 +5,7 @@ export const resultsHandler = ({firstPlayerFigure, secondPlayerFigure}: IChosenF
   console.log(firstPlayerFigure, secondPlayerFigure, scores)
   //both figures 'unselected'
   if (firstPlayerFigure === secondPlayerFigure) {
-    return { currentRoundWinner: IResultEvents.draw, scores }
+    return { currentRoundWinner: IResultEvents.draw, currentScores: scores }
   }
   //each one 'selected'
   const figuresSequences = ['unselected', 'paper', 'scissors', 'rock'];
@@ -13,13 +13,13 @@ export const resultsHandler = ({firstPlayerFigure, secondPlayerFigure}: IChosenF
   let currentScores = {...scores};
 
   if ((figuresSequences.indexOf(firstPlayerFigure) > figuresSequences.indexOf(secondPlayerFigure) &&
-    (secondPlayerFigure !== IFigures.paper && firstPlayerFigure !== IFigures.rock))
-    || (secondPlayerFigure === IFigures.rock && firstPlayerFigure === IFigures.paper)) {
+    (firstPlayerFigure !== IFigures.rock || secondPlayerFigure !== IFigures.paper))
+    || (firstPlayerFigure === IFigures.paper && secondPlayerFigure === IFigures.rock)) {
     currentScores.firstPlayerScore += 1;
     currentRoundWinner = IPlayers.firstPlayer
   } else {
     currentScores.secondPlayerScore += 1;
     currentRoundWinner = IPlayers.secondPlayer
   }
-  return { currentRoundWinner, currentScores}
+  return { currentRoundWinner, currentScores }
 };

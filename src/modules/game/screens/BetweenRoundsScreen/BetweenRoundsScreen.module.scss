@@ -62,10 +62,6 @@
   border-radius: 50%;
 }
 
-.drawIcon.fadeIn {
-  transition: .5s ease-out 1s;
-  opacity: .6;
-}
 
 .drawIcon {
   width: 20vw;
@@ -75,7 +71,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  animation: .5s drawIconFadeIn ease-out forwards 0.3s;
+  animation: 0.7s drawIconFadeIn ease-in-out forwards 0.3s;
 }
 
 //onlineIndicator - online green circle
@@ -107,7 +103,11 @@
   font-family: 'Bebas Neue', cursive;
   font-size: 6vw;
   opacity: 0;
-  animation: resultTextFadeIn 1s ease-out forwards 1.2s;
+  animation: resultTextFadeIn 1s ease-out forwards 1s;
+}
+
+.resultTextWhileDraw {
+  animation: resultTextFadeIn 1s ease-out forwards 0.8s;
 }
 
 .resultText span {
@@ -126,7 +126,6 @@
 .figure.lose {
   animation: secondPlayerLose 0.7s forwards 0.3s;
 }
-
 
 //first player figure
 .figure.mirrored.win {
