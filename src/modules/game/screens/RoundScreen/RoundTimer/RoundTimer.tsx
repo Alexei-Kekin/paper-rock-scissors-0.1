@@ -8,7 +8,7 @@ interface IRoundTimerProps {
 }
 
 export const RoundTimer: React.FC<IRoundTimerProps> = ({ roundTimerDuration, className }) => {
-    const TIMELINE_ITEMS_COUNT = 14;
+    const TIMELINE_ITEMS_COUNT = 15;
     const TIME_STEP_DURATION = roundTimerDuration / TIMELINE_ITEMS_COUNT;
 
     const [completedStepsCount, setCompletedStepsCount] = useState(TIMELINE_ITEMS_COUNT);
