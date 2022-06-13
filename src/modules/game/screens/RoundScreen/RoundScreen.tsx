@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import classNames from "classnames";
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import {IPlayers, IScreenVisibility} from "../../types";
 import { useAssignFigureToPlayer } from "../../../../hooks/useAssignFigureToPlayer";
@@ -12,13 +11,7 @@ interface IRoundScreenProps {
 }
 
 export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisible }) => {
-    const [visibleSeparator, setVisibleSeparator] = useState(false);
-
     const { firstPlayerFigure, secondPlayerFigure } = useAssignFigureToPlayer();
-
-    useEffect(() => {
-        setVisibleSeparator(isVisible)
-    }, [isVisible]);
 
     useEffect(() => {
         chosenFigures({firstPlayerFigure, secondPlayerFigure})
@@ -34,7 +27,7 @@ export const RoundScreen: React.FC<IRoundScreenProps> = ({ chosenFigures, isVisi
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <div className={classNames(styles.separator, visibleSeparator && styles.visible)} />
+                    <img className={styles.separator} src={require('../../../../../src/assets/images/separator.png')} alt="Separator" />
                     <PlayerComponent
                         player={IPlayers.firstPlayer}
                         title={`Chose figure for ${IPlayers.firstPlayer}`}
